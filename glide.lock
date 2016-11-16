@@ -1,0 +1,14 @@
+hash: 019a42ccbd688105f2a7b5695ad43da78c393256f292cb71c49f40595ef84cec
+updated: 2016-11-17T03:07:31.093225342+01:00
+imports:
+- name: github.com/caarlos0/env
+  version: d0de832ed2fbc4e7bfaa30ab5cf0b3417d15f529
+- name: github.com/codegangsta/inject
+  version: 33e0aa1cb7c019ccc3fbe049a8262a6403d30504
+- name: github.com/go-martini/martini
+  version: 49411a5b646861ad29a6ddd5351717a0a9c49b94
+- name: github.com/martini-contrib/render
+  version: ec18f8345a1181146728238980606fb1d6f40e8c
+- name: github.com/oxtoacart/bpool
+  version: 4e1c5567d7c2dd59fa4c7c83d34c2f3528b025d6
+testImports: []
