@@ -5,3 +5,6 @@ import:
 - package: github.com/go-martini/martini
   version: ~1.0.0
 - package: github.com/martini-contrib/render
+- package: github.com/jinzhu/gorm
+  version: ~1.0.0
+- package: github.com/lib/pq

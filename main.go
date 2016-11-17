@@ -2,27 +2,40 @@ package main
 
 import (
 	"go-server/src/controllers"
+	"log"
 
-	"github.com/caarlos0/env"
 	"github.com/go-martini/martini"
+	"github.com/jinzhu/gorm"
+	_ "github.com/lib/pq"
 	"github.com/martini-contrib/render"
 )
-
-type Config struct {
-	Port string `env:"PORT" envDefault:"3000"`
-}
 
 func main() {
 	app := martini.Classic()
 	app.Use(render.Renderer())
+	app.Use(databaseMiddleware())
 
-	app.Get("/", controllers.HomeController)
+	app.Get("/", controllers.GetHomeHandler)
+	app.Group("/users", func(router martini.Router) {
+		router.Get("", controllers.GetUserHandler)
+	})
 
 	app.Run()
 }
 
-func GetConfig() Config {
-	cfg := Config{}
-	env.Parse(&cfg)
-	return cfg
+func databaseMiddleware() martini.Handler {
+	return func(context martini.Context) {
+		db, err := gorm.Open("postgres", GetConfig().DatabaseConnection)
+
+		if err != nil {
+			log.Fatalln(err.Error())
+		}
+
+		defer db.Close()
+		db.LogMode(true)
+
+		context.Map(db)
+
+		context.Next()
+	}
 }
