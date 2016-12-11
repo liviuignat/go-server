@@ -19,9 +19,12 @@ glide install # install dependecies
 gin           # run app
 ```
 
-##### Docker
+##### Micro Docker Image build on MacOS
 ```sh
-docker build -t go-server .
+chmod +x ./tasks/build
+./tasks/build
+# https://sebest.github.io/post/create-a-small-docker-image-for-a-golang-binary/
+# at this point the docker image has max 10 MB
 docker run -d -p 3000:3000 --name go-server go-server
 ```
 
